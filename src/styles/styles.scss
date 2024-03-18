@@ -1,0 +1,25 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined';
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0';
+
+html,
+body {
+  height: 100%;
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--font-color);
+}
+
+.material-icons {
+  font-size: 22px;
+  line-height: 24px;
+  font-family: 'Material Symbols Outlined', 'Material Icons';
+}
