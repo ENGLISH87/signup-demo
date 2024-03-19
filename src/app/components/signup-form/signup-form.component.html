@@ -1,0 +1,22 @@
+<div class="form-wrapper">
+  @if (!success) {
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" [@fadeInOnly]>
+      @for (q of questions; track $index) {
+        <sd-form-question [form]="form" [question]="q"></sd-form-question>
+      }
+
+      @if (error) {
+        <p class="err">Something went wrong, please try again!</p>
+      }
+      <button type="submit" [disabled]="!form.valid">
+        @if (loading) {
+          submitting...
+        } @else {
+          Sign Up
+        }
+      </button>
+    </form>
+  } @else {
+    <div class="success" [@fadeInOnly]><p>Congratulations, new sign-up submitted!</p></div>
+  }
+</div>

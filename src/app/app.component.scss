@@ -1,0 +1,12 @@
+.wrapper {
+  @apply flex flex-col justify-center p-4 max-w-[500px];
+  margin: 0 auto;
+  height: 100%;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+}

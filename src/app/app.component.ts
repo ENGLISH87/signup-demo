@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 @Component({
   selector: 'sd-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [SignupFormComponent],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor() {}
+  title = 'Sign up';
 }
