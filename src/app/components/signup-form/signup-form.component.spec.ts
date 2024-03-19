@@ -17,10 +17,6 @@ describe('SignupFormComponent', () => {
   let debugEl: DebugElement;
   let submitBtn: HTMLButtonElement;
 
-  const mockDataSvc = {
-    submit: jasmine.createSpy('submit').and.returnValue(of(void 0)),
-  };
-
   const formValue: SignupData = {
     firstName: 'test',
     lastName: 'test',
@@ -33,7 +29,9 @@ describe('SignupFormComponent', () => {
       providers: [
         {
           provide: DataService,
-          useValue: mockDataSvc,
+          useValue: {
+            submit: () => of(void 0),
+          },
         },
       ],
     })
@@ -71,7 +69,7 @@ describe('SignupFormComponent', () => {
     component.form.updateValueAndValidity();
     fixture.detectChanges();
 
-    mockDataSvc.submit.and.returnValue(throwError(() => 'Something went wrong'));
+    spyOn(dataSvc, 'submit').and.returnValue(throwError(() => 'Something went wrong'));
     submitBtn.click();
     fixture.detectChanges();
 
@@ -87,6 +85,8 @@ describe('SignupFormComponent', () => {
   });
 
   it('should submit form and display submitting... whilst waiting for api call', fakeAsync(() => {
+    spyOn(dataSvc, 'submit').and.returnValue(of(void 0));
+
     submitBtn.click();
     expect(dataSvc.submit).not.toHaveBeenCalled();
 
@@ -96,6 +96,10 @@ describe('SignupFormComponent', () => {
 
     submitBtn.click();
     fixture.detectChanges();
+
+    tick(200);
+    fixture.detectChanges();
+
     expect(submitBtn.textContent).toContain('submitting...');
 
     tick(2200);
