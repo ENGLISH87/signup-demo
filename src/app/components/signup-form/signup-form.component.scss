@@ -1,0 +1,27 @@
+.form-wrapper {
+  width: 100%;
+  overflow: hidden;
+
+  form {
+    .err {
+      color: #e83969;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      text-transform: uppercase;
+      background: #e83969;
+      margin-top: 15px;
+
+      &:disabled {
+        color: #ffb5b5;
+        background: rgba(232, 57, 105, 0.53);
+      }
+    }
+  }
+
+  .success {
+    min-height: 280px;
+  }
+}

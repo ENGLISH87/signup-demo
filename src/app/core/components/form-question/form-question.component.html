@@ -1,0 +1,39 @@
+<div [formGroup]="form">
+  <div class="form-control">
+    <label [attr.for]="question.key">{{ question.label }}</label>
+    <div class="form-input">
+      @switch (question.controlType) {
+        @case ('textbox') {
+          <input
+            [id]="question.key"
+            [placeholder]="question.placeholder || ''"
+            [type]="question.type"
+            [formControlName]="question.key"
+          />
+        }
+        @case ('dropdown') {
+          <!-- simple placeholder to demo switch/case control flow for questions -->
+          <select [id]="question.key" [formControlName]="question.key">
+            <option *ngFor="let opt of question.options" [value]="opt.key">{{ opt.value }}</option>
+          </select>
+        }
+      }
+      <span class="form-err">
+        @if (form.get(question.key); as formCtrl) {
+          <ng-container *ngTemplateOutlet="errors; context: { $implicit: formCtrl }"></ng-container>
+        }
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Potentially move into its own component -->
+<ng-template #errors let-formCtrl>
+  @if (formCtrl.touched && formCtrl.invalid) {
+    @if (formCtrl.hasError('required')) {
+      {{ question.label }} is required
+    } @else if (formCtrl.hasError('email')) {
+      Invalid email address
+    }
+  }
+</ng-template>

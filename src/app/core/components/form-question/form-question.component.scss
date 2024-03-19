@@ -1,0 +1,37 @@
+.form-control {
+  @apply flex flex-col md:flex-row;
+  margin-bottom: 5px;
+
+  label {
+    @apply md:w-1/3 md:self-center md:mb-4;
+    display: block;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    letter-spacing: 1px;
+  }
+
+  .form-input {
+    display: flex;
+    flex-direction: column;
+    @apply md:w-2/3;
+
+    input {
+      width: 100%;
+      outline: none;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid;
+      padding: 12px 10px;
+
+      &.ng-invalid.ng-touched {
+        border-color: #e83969;
+      }
+    }
+
+    .form-err {
+      color: #e83969;
+      min-height: 20px;
+      line-height: 20px;
+      font-size: 0.875rem;
+    }
+  }
+}
